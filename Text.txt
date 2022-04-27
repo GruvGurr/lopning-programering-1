@@ -1,4 +1,12 @@
-hej
-hoj
-oj
-soj
+Bob
+0
+Stina
+28
+Alice
+3
+Pär
+900
+Sture
+39
+Ninni
+73

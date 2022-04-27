@@ -41,24 +41,27 @@ def append2()
 end
 
 def modifiera()
-    array = File.readlines("Text.txt")
-    p array
-    gets
+    array = File.readlines("Text.txt").map {|x| x.chomp! }
     puts "Vem är det som har gått i mål?"
+    p array
     namn = gets.chomp
     i = 0
     while array[i] != namn
         p namn
-        p array
+        i += 2
+        sleep(0.5)
         p array[i]
-        i += 1
-        sleep(5)
     end
     i += 1
-    puts i
     puts "Vad är tiden?"
     array[i] = gets.chomp
-
+    lista = File.open("Text.txt", "w") do |fil|
+        fil.puts(array)
+    end
+    lista.close()
+    
+    
+    
 
 end
 
@@ -74,8 +77,11 @@ def lopning()
         elsif input == "3"
             modifiera()
         elsif input == "4"
+
         elsif input == "5"
+
         elsif input == "6"
+
         else 
             puts "Vad sa du? Ingen input som förväntades."
         end
