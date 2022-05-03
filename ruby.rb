@@ -1,3 +1,30 @@
+=begin
+    Beskrivning: Funktionen "append1" stoppar in deltagare med med tiden noll i textdokumentet "Text.txt".
+    Argument: Funktionen har inga argument.
+    Return: Funktionen har ingen return.
+    By: Valentin Karlsson och Albin Bergh
+    Date: 03/05/22
+=end
+
+=begin
+Dokument "Text.txt":
+    alber
+    7
+    Bob
+    2
+    curt
+    3
+    elin
+    5
+    halbet
+    6
+    Stina
+    8
+    Bob
+    5
+
+=end
+
 def append1()
     puts "Vilken är den nya deltagarens namn?"
     lista = File.open("Text.txt", "a")
@@ -16,6 +43,13 @@ def append1()
 end
 
 
+=begin
+    Beskrivning: Funktionen "append2" skriver in deltagare med tid i textdokumentet "Text.txt"
+    Argument: Funktionen har inga argument.
+    Return: Funktionen har ingen return.
+    By: Valentin Karlsson och Albin Bergh
+    Date: 03/05/22
+=end
 
 def append2()
     puts "Vilken är den nya deltagarens namn?"
@@ -40,8 +74,21 @@ def append2()
     lista.close
 end
 
+=begin
+    Beskrivning: Funktionen "modifiera()" ändrar tiden på en deltagare i textdokumentet "Text.txt"
+    Argument: Funktionen har inga argument.
+    Return: Funktionen har ingen return.
+    By: Valentin Karlsson och Albin Bergh
+    Date: 03/05/22
+=end
+
 def modifiera()
-    array = File.readlines("Text.txt").map {|x| x.chomp! }
+    array = File.readlines("Text.txt")
+    o = 0
+    while o < array.length
+        array[o].chomp!
+        o += 1
+    end
     puts "Vem är det som har gått i mål?"
     p array
     namn = gets.chomp
@@ -58,12 +105,66 @@ def modifiera()
     lista = File.open("Text.txt", "w") do |fil|
         fil.puts(array)
     end
-    lista.close()
-    
-    
-    
-
+    #crashar av en lista.close här
 end
+
+=begin
+    Beskrivning: Funktionen "vinnare()" letar reda på deltagaren med kortast tid
+    Argument: Funktionen har inga argument.
+    Return: Funktionen har ingen return.
+    By: Valentin Karlsson och Albin Bergh
+    Date: 03/05/22
+=end
+
+def vinnare
+    array = File.readlines("Text.txt")
+    o = 0
+    while o < array.length
+        array[o].chomp!
+        o += 1
+    end
+    system("cls")
+    i = 1
+    litetTal = array[1].to_i
+    vinnare = 1
+    p array
+    while i < array.length 
+        i += 2
+        p "i = #{i}"
+        if array[i].to_i < litetTal
+            litetTal = array[i].to_i
+            vinnare = i
+            p litetTal
+        end
+    end
+    puts "vinnaren är #{array[vinnare-1]}" 
+    gets
+end
+
+=begin
+    Beskrivning: Funktionen "sortTid()" sorterar deltagarnas tider utefter den minsta tiden i dokumentet "Text.txt".
+    Argument:
+    Return:
+    By: Valentin Karlsson och Albin Bergh
+    Date: 03/05/22
+=end
+
+def sortTid
+    array = File.open("Text.txt", "w")
+    i = 0
+    while i < 16
+    p array[i]
+    end
+    gets
+end
+
+=begin
+    Beskrivning: Funktionen "lopning()" används för att dels samla alla funktioner och dels för att kunna använda alla funktiorna. Det är även till för att visa en meny för alla funktionerna som man kan använda.
+    Argument: Det finns inga argument.
+    Return: Funktionen har ingen return.
+    By: Valentin Karlsson och Albin Bergh
+    Date: 03/05/22
+=end
 
 def lopning()
     system("cls")
@@ -77,9 +178,9 @@ def lopning()
         elsif input == "3"
             modifiera()
         elsif input == "4"
-
+            vinnare()
         elsif input == "5"
-
+            sortTid()
         elsif input == "6"
 
         else 
